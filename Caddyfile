@@ -1,0 +1,62 @@
+
+# Bookless Caddy config
+
+# Email for Let's Encrypt expiration notices
+{
+    email {$TLS_EMAIL}
+}
+
+# "www" redirect to "non-www" version
+www.{$DOMAIN_NAME} {
+    redir https://{$DOMAIN_NAME}{uri}
+}
+
+{$DOMAIN_NAME} {
+
+    root * {$PROJECT_DIR}
+
+    # HTTPS options:
+    header Strict-Transport-Security max-age=31536000;
+
+    # Removing some headers for improved security:
+    header -Server
+
+    # Dynamically compress response with gzip when it makes sense.
+    # This setting is ignored for precompressed files.
+    encode gzip
+
+    file_server {
+        hide .git
+    }
+
+    # Serve static files
+    handle_path /static/* {
+
+        # STATIC_ROOT
+        root * {$STATIC_ROOT}
+        file_server {
+            precompressed br gzip
+        }
+    }
+
+    # Serve media files
+    handle_path /media/* {
+
+        # MEDIA_ROOT
+        root * {$MEDIA_ROOT}
+        file_server
+    }
+
+    # Serve Django app
+    handle {
+
+        # Django instances in ip:port format
+        # reverse_proxy localhost:8000 localhost:8001 ...
+        reverse_proxy localhost:8000
+    }
+
+    # Logs:
+    log {
+        output stdout
+    }
+}

@@ -1,0 +1,84 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+    <title>Welcome!</title>
+  </head>
+  <body>
+    {% include '../includes/header.html' %}
+    <div class="box m-6">
+      <div
+        class="is-flex is-flex-direction-column is-align-items-center is-flex-wrap-wrap"
+      >
+        <form id="registerForm" action="{% url 'register' %}" method="post">{% csrf_token %}
+          <div class="is-flex is-flex-direction-column is-align-items-center">
+            <div class="is-flex is-flex-direction-column">
+              <p class="is-main my-2 is-font-md">Username</p>
+              <input
+                class="input is-normal is-full-width"
+                type="text"
+                placeholder="aldalwachee"
+                name="username"
+              />
+            </div>
+            <div class="is-flex is-flex-direction-column">
+              <p class="is-main my-2 is-font-md">First Name</p>
+              <input
+                class="input is-normal is-full-width"
+                type="text"
+                placeholder="Sajjad"
+                name="first_name"
+              />
+            </div>
+            <div class="is-flex is-flex-direction-column is-align-items-center">
+              <div class="is-flex is-flex-direction-column">
+                <p class="is-main my-2 is-font-md">Last Name</p>
+                <input
+                  class="input is-normal is-full-width"
+                  type="text"
+                  placeholder="alDalwachee"
+                  name="last_name"
+                />
+              </div>
+              <div class="is-flex is-flex-direction-column my-3">
+                <p class="is-main my-2 is-font-md">Email</p>
+                <input
+                  class="input is-normal is-full-width"
+                  type="text"
+                  placeholder="Jhon@gmail.com"
+                  name="email"
+                />
+              </div>
+              <div class="is-flex is-flex-direction-column my-3">
+                <p class="is-main my-2 is-font-md">Password</p>
+                <input class="input is-normal is-full-width" type="password" name="password1" />
+              </div>
+              <div class="is-flex is-flex-direction-column my-3">
+                <p class="is-main my-2 is-font-md">re-type Password</p>
+                <input class="input is-normal is-full-width" type="password" name="password2" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+        <div>
+          <button class="button my-4 is-main-bg is-rounded is-white" type="submit" form="registerForm">
+            Register
+          </button>
+        </div>
+        <a class="button my-4 is-main-bg is-rounded is-white" href="{% url 'signin' %}">
+          Login
+        </a>
+        <button class="button is-danger is-rounded">Login with Google</button>
+      </div>
+    </div>
+    {% include '../includes/footer.html' %}
+  </body>
+  <script src="{% static 'js/main.js' %}"></script>
+</html>
