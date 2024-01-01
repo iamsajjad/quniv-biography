@@ -36,9 +36,12 @@
   background-color: var(--main-color) !important;
 }
 .is-main {
+  text-align: center;
   color: var(--main-color) !important;
 }
-
+.is-center {
+  text-align: center;
+}
 .is-main-light {
   color: var(--main-light-color);
 }

@@ -4,15 +4,47 @@ from django.views.decorators.cache import cache_page
 from django.shortcuts import redirect, render
 
 from django.contrib.auth.models import User
+from django.conf import settings
 
 from bio.models import Bio
 from settings.models import Settings
 from settings.forms import SettingsForm
 from user.forms import UserRegisterForm
 
-from .slug import slug
+from user.slug import slug
 
 # Create your views here.
+
+@cache_page(0)
+def register(request):
+
+    if request.method == 'POST':
+        user = UserRegisterForm(request.POST)
+
+        if user.is_valid() and settings.IS_ORG_EMAIL(request.POST['email']):
+
+            user = user.save(commit=False)
+            user.is_superuser = False
+            user.is_staff = False
+            user.save()
+
+            user_settings = SettingsForm()
+            user_settings = user_settings.save(commit=False)
+            user_settings.user = user
+            user_settings.slug = slug(user.email)
+            user_settings.save()
+
+            Bio.objects.create(owner=user).save()
+
+            login(request, user)
+
+            return redirect(f'/{user_settings.slug}')
+    else:
+
+        return render(request, 'user/register.html')
+
+    return redirect('/')
+
 
 @cache_page(0)
 def signin(request):
@@ -34,10 +66,10 @@ def signin(request):
             if not Settings.objects.filter(user=user).exists():
 
                 # user is created using CLI with out settings object
-                settings = SettingsForm().save(commit=False)
-                settings.user = user
-                settings.slug = slug()
-                settings.save()
+                user_settings = SettingsForm().save(commit=False)
+                user_settings.user = user
+                user_settings.slug = slug(user.email)
+                user_settings.save()
 
             login(request, user)
 
@@ -58,36 +90,6 @@ def signin(request):
 
     return render(request, 'user/signin.html', response)
 
-
-@cache_page(0)
-def register(request):
-
-    if request.method == 'POST':
-        user = UserRegisterForm(request.POST)
-        settings = SettingsForm()
-
-        if user.is_valid():
-
-            user = user.save(commit=False)
-            user.is_superuser = False
-            user.is_staff = False
-            user.save()
-
-            settings = settings.save(commit=False)
-            settings.user = user
-            settings.slug = slug()
-            settings.save()
-
-            Bio.objects.create(owner=user).save()
-
-            login(request, user)
-
-            return redirect(f'/{settings.slug}')
-    else:
-
-        return render(request, 'user/register.html')
-
-    return redirect('/')
 
 @login_required
 @cache_page(0)

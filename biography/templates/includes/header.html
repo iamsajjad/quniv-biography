@@ -6,8 +6,10 @@
       <div>
         {% if LANGUAGE_CODE == 'en' %}
         <p class="title is-white mb-20">University of AL-Qadisiyah</p>
+        <p class="has-text-weight-semibold is-white mb-20">The Unified Biography Project</p>
         {% else %}
         <p class="title is-white is-arabic mb-20">جامعــــــــــة القادسيــــــــة</p>
+        <p class="has-text-weight-semibold is-arabic is-white mb-20">مشروع السيرة الذاتية الموحدة</p>
         {% endif %}
       </div>
       <div>
@@ -17,7 +19,7 @@
     <div class="is-flex mx-3 head-btn" >
 
       <div class="lang my-2">
-        {% if biopage %}
+        {% if not request.user.is_anonymous %}
           {% if LANGUAGE_CODE == 'en' %}
           <a href="{% url 'language' lang='en' bio=settings.slug %}">
           {% else %}

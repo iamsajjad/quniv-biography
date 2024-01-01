@@ -14,6 +14,7 @@ class BioForm(forms.ModelForm):
 
         'ar_full_name', 'ar_nationality', 'ar_academic_title', 'ar_college',
         'ar_department', 'ar_major', 'ar_specialty', 'ar_position', 'ar_occupation',
+        'ar_state', 'ar_district', 'ar_hiring_date', 'ar_direct_date',
         'ar_mother_lang', 'ar_other_langs',)
 
 

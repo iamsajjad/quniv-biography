@@ -42,7 +42,6 @@ def biopage(request, slug):
     }
 
     response = {
-        'biopage': True,
         'settings': settings,
         'bio': bio,
         'status': status,

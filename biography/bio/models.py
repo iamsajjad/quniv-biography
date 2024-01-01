@@ -47,6 +47,10 @@ class Bio(models.Model):
     ar_occupation     = models.CharField(max_length=256, default='', blank=True)
     ar_mother_lang    = models.CharField(max_length=256, default='', blank=True)
     ar_other_langs    = models.CharField(max_length=256, default='', blank=True)
+    ar_state          = models.CharField(max_length=256, default='', blank=True)
+    ar_district       = models.CharField(max_length=256, default='', blank=True)
+    ar_hiring_date    = models.DateTimeField(auto_now=False, default=datetime.now(), blank=True)
+    ar_direct_date    = models.DateTimeField(auto_now=False, default=datetime.now(), blank=True)
 
     publications      = models.ManyToManyField(Publication, related_name='publications')
     links             = models.ManyToManyField(Link, related_name='links')

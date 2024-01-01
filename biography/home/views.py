@@ -17,5 +17,5 @@ def language(request, lang, bio):
     lang = {'ar': 'en',  'en': 'ar'}.get(lang, 'en')
     translation.activate(lang)
 
-    return HttpResponseRedirect(f'/{lang}/bio/{bio}')
+    return HttpResponseRedirect(f'/{lang}/@/{bio}')
 

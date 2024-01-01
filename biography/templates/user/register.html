@@ -5,9 +5,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" sizes="any" type="image/svg+xml" href="{% static 'assets/icons/quniv.svg' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
-    <title>Welcome!</title>
+    <title>UoQ | CV project</title>
   </head>
   <body>
     {% include '../includes/header.html' %}
@@ -50,7 +51,7 @@
                 <input
                   class="input is-normal is-full-width"
                   type="text"
-                  placeholder="Jhon@gmail.com"
+                  placeholder="Jhon@qu.edu.iq"
                   name="email"
                 />
               </div>
@@ -75,7 +76,6 @@
         <a class="button my-4 is-main-bg is-rounded is-white" href="{% url 'signin' %}">
           Login
         </a>
-        <button class="button is-danger is-rounded">Login with Google</button>
       </div>
     </div>
     {% include '../includes/footer.html' %}

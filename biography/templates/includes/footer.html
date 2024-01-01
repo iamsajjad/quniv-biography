@@ -3,8 +3,9 @@
 <section class="is-main-bg p-4">
   <div class="columns">
     <div class="column is-white is-four-fifths">
-      Technical Support : support@gmail.com
+      Technical Support <i class="bi bi-envelope-at-fill is-white"></i> : <a class="is-white" href="mailto:cc@qu.edu.iq">cc@qu.edu.iq</a>
     </div>
+    {% if not request.user.is_anonymous %}
     <div class="is-left-border mt-3"></div>
     <div class="column">
       <div class="columns">
@@ -22,6 +23,7 @@
         <div class="is-white">BIOs</div>
       </section>
     </div>
+    {% endif %}
   </div>
 
   {% if LANGUAGE_CODE == 'en' %}

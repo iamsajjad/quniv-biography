@@ -190,6 +190,18 @@
           <span class="is-arabic">{{ bio.ar_occupation }}</span>
         </div>
         {% endif %}
+        {% if bio.ar_hiring_date %}
+        <div class="my-1">
+          <span class="is-main is-arabic">تاريخ التعيين : </span>
+          <span class="is-arabic">{{ bio.ar_hiring_date|date:"Y-m-d" }}</span>
+        </div>
+        {% endif %}
+        {% if bio.ar_direct_date %}
+        <div class="my-1">
+          <span class="is-main is-arabic">تاريخ أول مباشرة : </span>
+          <span class="is-arabic">{{ bio.ar_direct_date|date:"Y-m-d" }}</span>
+        </div>
+        {% endif %}
         {% if bio.personal_email %}
         <div class="my-1">
           <span class="is-main is-arabic">البريد الشخصي : </span>
@@ -221,6 +233,18 @@
         <div class="my-1">
           <span class="is-main is-arabic">اللغات الأخرى :</span>
           <span class="is-arabic">{{ bio.ar_other_langs }}</span>
+        </div>
+        {% endif %}
+        {% if bio.ar_state %}
+        <div class="my-1">
+          <span class="is-main is-arabic">المحافظة : </span>
+          <span class="is-arabic">{{ bio.ar_state }}</span>
+        </div>
+        {% endif %}
+        {% if bio.ar_district %}
+        <div class="my-1">
+          <span class="is-main is-arabic">القضاء : </span>
+          <span class="is-arabic">{{ bio.ar_district }}</span>
         </div>
         {% endif %}
         {% if bio.work_email %}

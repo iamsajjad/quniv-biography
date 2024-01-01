@@ -30,7 +30,7 @@ urlpatterns = i18n_patterns(
 
     # Bio URLs
     path('', include('bio.urls')),
-    path('bio/', include('bio.urls')),
+    path('@/', include('bio.urls')),
 
     # Link URLs
     path('bio/link/', include('link.urls')),
