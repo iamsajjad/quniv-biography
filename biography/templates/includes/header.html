@@ -6,10 +6,10 @@
       <div>
         {% if LANGUAGE_CODE == 'en' %}
         <p class="title is-white mb-20">University of AL-Qadisiyah</p>
-        <p class="has-text-weight-semibold is-white mb-20">The Unified Biography Project</p>
+        <p class="has-text-weight-semibold is-white is-center mb-20">The University Staff Biography</p>
         {% else %}
         <p class="title is-white is-arabic mb-20">جامعــــــــــة القادسيــــــــة</p>
-        <p class="has-text-weight-semibold is-arabic is-white mb-20">مشروع السيرة الذاتية الموحدة</p>
+        <p class="has-text-weight-semibold is-arabic is-white mb-20">السيرة الذاتية لتدريسي الجامعة</p>
         {% endif %}
       </div>
       <div>
@@ -19,14 +19,8 @@
     <div class="is-flex mx-3 head-btn" >
 
       <div class="lang my-2">
-        {% if not request.user.is_anonymous %}
-          {% if LANGUAGE_CODE == 'en' %}
-          <a href="{% url 'language' lang='en' bio=settings.slug %}">
-          {% else %}
-          <a href="{% url 'language' lang='ar' bio=settings.slug %}">
-          {% endif %}
-        {% endif %}
-          <i class="bi bi-translate is-white title"></i>
+        <a href="{% url 'language' pagepath=request.path %}">
+        <i class="bi bi-translate is-white title"></i>
         </a>
       </div>
 
